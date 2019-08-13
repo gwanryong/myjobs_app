@@ -1,3 +1,33 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
-<p>This will be a signup page for new users.</p>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+      
+      <%= f.label :名前 %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :メールアドレス %>
+      <%= f.email_field :email, class: 'form-control' %>
+      
+      <%= f.label :残業単価（普通） %>
+      <%= f.email_field :rowrate, class: 'form-control' %>
+      
+      <%= f.label :残業単価（深夜） %>
+      <%= f.email_field :highrate, class: 'form-control' %>
+      
+      <%= f.label :締め日 %>
+      <%= f.email_field :expiredy, class: 'form-control' %>
+
+      <%= f.label :パスワード %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :パスワード（確認用） %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.submit "登録する", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
