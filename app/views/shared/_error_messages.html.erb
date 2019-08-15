@@ -1,12 +1,45 @@
 <% if @user.errors.any? %>
   <div id="error_explanation">
+    
+    <% if false %>
     <div class="alert alert-danger">
       The form contains <%= pluralize(@user.errors.count, "error") %>.
     </div>
+    <% end %>
+    
     <ul>
+    <% if @user.name.empty? %>
+      <p>名前を入力してください。</p>
+    <% end %>
+    <% if @user.email.empty? %>
+      <p>メールアドレスを入力してください。</p>
+    <% end %>
+    <% if @user.rowrate == nil %>
+      <p>残業単価（普通）を入力してください。</p>
+    <% end %>
+    <% if @user.highrate == nil %>
+      <p>残業単価（深夜）を入力してください。</p>
+    <% end %>
+    <% if @user.expiredy.empty? %>
+      <p>締め日を選択してください。</p>
+    <% end %>
+    <% if @user.password == nil %>
+      <p>パスワードを入力してください。</p>
+    <% else %>
+      <% if @user.password.length < 6 %>
+        <p>パスワードは6文字以上入力してください。</p>
+      <% end %>
+    <% end %>
+    <% if @user.password_confirmation == nil %>
+      <p>パスワード（確認用）を入力してください。</p>
+    <% end %>
+    
+    <% if false %>
     <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
+    <% end %>
+    
     </ul>
   </div>
 <% end %>
