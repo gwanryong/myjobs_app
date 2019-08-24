@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :highrate, presence: true, length: { maximum: 10 }
   validates :expiredy, presence: true, length: { maximum: 2 }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
