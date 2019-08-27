@@ -1,0 +1,17 @@
+<h2>残業時間入力</h2>
+
+  <div class="col-md-6">
+    <%= form_for(@overtimeinfo) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :普通 %>
+      <%= f.text_field :overtime, class: 'form-control' %>
+
+      <%= f.label :深夜 %>
+      <%= f.text_field :extratime, class: 'form-control' %>
+
+      <%= f.submit "更新", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+  

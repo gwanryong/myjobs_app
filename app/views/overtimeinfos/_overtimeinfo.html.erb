@@ -1,0 +1,11 @@
+<li id="overtimeinfo-<%= overtimeinfo.id %>">
+  <span class="overtime">普通： <%= overtimeinfo.overtime %>h</span><br>
+  <span class="extratime">深夜： <%= overtimeinfo.extratime %>h</span><br>
+  <span class="timestamp">
+    登録日： <%= overtimeinfo.created_at %>
+  </span>
+  <% if current_user?(overtimeinfo.user) %>
+    <%= link_to "削除", overtimeinfo, method: :delete,
+                                       data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
+</li>

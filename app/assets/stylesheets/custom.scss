@@ -168,3 +168,26 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+/* overtimeinfos */
+
+.overtimeinfos {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 260px;
+  }
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}

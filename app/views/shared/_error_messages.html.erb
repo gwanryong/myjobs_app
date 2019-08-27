@@ -1,41 +1,52 @@
-<% if @user.errors.any? %>
+<% if object.errors.any? %>
   <div id="error_explanation">
     
     <% if false %>
     <div class="alert alert-danger">
-      The form contains <%= pluralize(@user.errors.count, "error") %>.
+      The form contains <%= pluralize(object.errors.count, "error") %>.
     </div>
     <% end %>
     
     <ul>
-    <% if @user.name.empty? %>
-      <p>名前を入力してください。</p>
-    <% end %>
-    <% if @user.email.empty? %>
-      <p>メールアドレスを入力してください。</p>
-    <% end %>
-    <% if @user.rowrate == nil %>
-      <p>残業単価（普通）を入力してください。</p>
-    <% end %>
-    <% if @user.highrate == nil %>
-      <p>残業単価（深夜）を入力してください。</p>
-    <% end %>
-    <% if @user.expiredy.empty? %>
-      <p>締め日を選択してください。</p>
-    <% end %>
-    <% if @user.password == nil %>
-      <p>パスワードを入力してください。</p>
-    <% else %>
-      <% if @user.password.length < 6 %>
-        <p>パスワードは6文字以上入力してください。</p>
+    <% if object.kind_of?(User) %>
+      <% if object.name.empty? %>
+        <p>名前を入力してください。</p>
+      <% end %>
+      <% if object.email.empty? %>
+        <p>メールアドレスを入力してください。</p>
+      <% end %>
+      <% if object.rowrate == nil %>
+        <p>残業単価（普通）を入力してください。</p>
+      <% end %>
+      <% if object.highrate == nil %>
+        <p>残業単価（深夜）を入力してください。</p>
+      <% end %>
+      <% if object.expiredy.empty? %>
+        <p>締め日を選択してください。</p>
+      <% end %>
+      <% if object.password == nil %>
+        <p>パスワードを入力してください。</p>
+      <% else %>
+        <% if object.password.length < 6 %>
+          <p>パスワードは6文字以上入力してください。</p>
+        <% end %>
+      <% end %>
+      <% if object.password_confirmation == nil %>
+        <p>パスワード（確認用）を入力してください。</p>
       <% end %>
     <% end %>
-    <% if @user.password_confirmation == nil %>
-      <p>パスワード（確認用）を入力してください。</p>
+    
+    <% if object.kind_of?(Overtimeinfo) %>
+      <% if object.overtime == nil %>
+        <p>普通を入力してください。</p>
+      <% end %>
+      <% if object.extratime == nil %>
+        <p>深夜を入力してください。</p>
+      <% end %>
     <% end %>
     
     <% if false %>
-    <% @user.errors.full_messages.each do |msg| %>
+    <% object.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     <% end %>

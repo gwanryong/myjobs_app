@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :overtimeinfos, dependent: :destroy
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
@@ -39,5 +40,10 @@ class User < ApplicationRecord
   # ユーザーのログイン情報を破棄する
   def forget
     update_attribute(:remember_digest, nil)
+  end
+  
+  # ユーザの残業情報を表示する
+  def feed
+    Overtimeinfo.where("user_id = ?", id)
   end
 end

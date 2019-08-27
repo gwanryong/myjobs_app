@@ -9,6 +9,13 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    tougetsu = Date.parse(Date.today.year.to_s + "/" + Date.today.month.to_s + "/" + @user.expiredy)
+    
+    if tougetsu < Date.today
+      @overtimeinfos = Overtimeinfo.where("created_at > ? or created_at <= ?", tougetsu, Date.today.to_time)
+    else
+      @overtimeinfos = Overtimeinfo.where("created_at > ? or created_at <= ?", tougetsu.prev_month, Date.today.to_time)
+    end
   end
   
   def new
@@ -53,16 +60,7 @@ class UsersController < ApplicationController
                                    :expiredy, :password, :password_confirmation)
     end
     
-    # beforeアクション
-
-    # ログイン済みユーザーかどうか確認
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "ログインしてください。"
-        redirect_to login_url
-      end
-    end
+    # beforeフィルター
     
     # 正しいユーザーかどうか確認
     def correct_user

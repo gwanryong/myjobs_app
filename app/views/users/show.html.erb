@@ -3,3 +3,18 @@
 <p>残業単価（普通）：<%= @user.rowrate %>円</p> <br>
 <p>残業単価（深夜）：<%= @user.highrate %>円</p> <br>
 <p>締め日：<%= @user.expiredy %>日</p> <br>
+<br>
+
+<% if @overtimeinfos.any? %>
+  <h3>残業データ</h3>
+  
+  <% totalovertime = 0.0 %>
+  <% totalextratime = 0.0 %>
+  <% @overtimeinfos.each do |overtimeinfo| %>
+    <% totalovertime += overtimeinfo.overtime %>
+    <% totalextratime += overtimeinfo.extratime %>
+  <% end %>
+  
+  <p>残業時間合計：<%= totalovertime + totalextratime %>h</p>
+  <p>残業代合計：<%= (totalovertime*@user.rowrate) + (totalextratime*@user.highrate) %>円</p> <br>
+<% end %>
