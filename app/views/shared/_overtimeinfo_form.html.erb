@@ -4,13 +4,16 @@
     <%= form_for(@overtimeinfo) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
+      <%= f.label :日付 %>
+      <%= f.date_select :created_at, {:use_month_numbers => true, start_year:2018, end_year:(Time.now.year)}, class: 'form-control' %>
+
       <%= f.label :普通 %>
       <%= f.text_field :overtime, class: 'form-control' %>
 
       <%= f.label :深夜 %>
       <%= f.text_field :extratime, class: 'form-control' %>
 
-      <%= f.submit "更新", class: "btn btn-primary" %>
+      <%= f.submit "登録", class: "btn btn-primary" %>
     <% end %>
 
   </div>

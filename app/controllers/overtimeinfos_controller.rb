@@ -22,7 +22,7 @@ class OvertimeinfosController < ApplicationController
   private
 
     def overtimeinfo_params
-      params.require(:overtimeinfo).permit(:overtime, :extratime)
+      params.require(:overtimeinfo).permit(:created_at, :overtime, :extratime)
     end
     
     def correct_user
