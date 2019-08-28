@@ -12,12 +12,12 @@ class UsersController < ApplicationController
     tougetsu = Date.parse(Date.today.year.to_s + "/" + Date.today.month.to_s + "/" + @user.expiredy)
     
     if @user.expiredy == "30"
-      @overtimeinfos = Overtimeinfo.where("created_at > ? or created_at <= ?", Date.today.beginning_of_month, Date.today)
+      @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ?", Date.today.beginning_of_month, Date.today)
     else
       if tougetsu < Date.today
-        @overtimeinfos = Overtimeinfo.where("created_at > ? or created_at <= ?", tougetsu, Date.today)
+        @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ?", tougetsu, Date.today)
       else
-        @overtimeinfos = Overtimeinfo.where("created_at > ? or created_at <= ?", tougetsu.prev_month, Date.today)
+        @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ?", tougetsu.prev_month, Date.today)
       end
     end
   end

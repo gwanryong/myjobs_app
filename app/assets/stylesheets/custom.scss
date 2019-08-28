@@ -181,7 +181,14 @@ input {
   .timestamp {
     color: $gray-light;
     display: block;
-    margin-left: 260px;
+  }
+  .overtime {
+    color: #000000;
+    display: block;
+  }
+  .extratime {
+    color: #000000;
+    display: block;
   }
 }
 

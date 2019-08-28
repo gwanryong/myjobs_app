@@ -13,10 +13,10 @@
       <%= f.email_field :email, class: 'form-control' %>
       
       <%= f.label :残業単価（普通） %>
-      <%= f.number_field :rowrate, min:800, max:100000, step:100, class: 'form-control' %>
+      <%= f.number_field :rowrate, min:800, max:100000, step:1, class: 'form-control' %>
       
       <%= f.label :残業単価（深夜） %>
-      <%= f.number_field :highrate, min:800, max:100000, step:100, class: 'form-control' %>
+      <%= f.number_field :highrate, min:800, max:100000, step:1, class: 'form-control' %>
       
       <%= f.label :締め日 %>
       <%= f.select :expiredy, [["10日締", "10"], ["20日締", "20"], ["末締", "30"]], :prompt => "選択してください" , class: 'form-control' %>
