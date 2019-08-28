@@ -1,3 +1,5 @@
+<% provide(:title, 'Home') %>
+
 <% if logged_in? %>
   <div class="row">
     <aside class="col-md-4">
@@ -8,10 +10,10 @@
         <%= render 'shared/overtimeinfo_form' %>
       </section>
     </aside>
-    <div class="col-md-8">
+    <section class="col-md-8">
       <h3>残業データ</h3>
       <%= render 'shared/feed' %>
-    </div>
+    </section>
   </div>
 <% else %>
 
