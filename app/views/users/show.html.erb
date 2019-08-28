@@ -6,7 +6,7 @@
 <br>
 
 <% if @overtimeinfos.any? %>
-  <h3>残業データ</h3>
+  <h3>残業データ (当月分)</h3>
   
   <% totalovertime = 0.0 %>
   <% totalextratime = 0.0 %>
@@ -15,6 +15,11 @@
     <% totalextratime += overtimeinfo.extratime %>
   <% end %>
   
-  <p>残業時間合計：<%= totalovertime + totalextratime %>h</p>
-  <p>残業代合計：<%= (totalovertime*@user.rowrate) + (totalextratime*@user.highrate) %>円</p> <br>
+  <div class="row">
+    <div class="col-md-6">
+      <p>残業時間合計：<%= totalovertime + totalextratime %>h</p>
+      <p>残業代合計：<%= (totalovertime*@user.rowrate) + (totalextratime*@user.highrate) %>円</p>
+    </div>
+  </div>
+
 <% end %>

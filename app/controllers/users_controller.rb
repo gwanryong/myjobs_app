@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: [:show, :edit, :update]
   before_action :admin_user,     only: :destroy
   
   def index
@@ -20,6 +20,10 @@ class UsersController < ApplicationController
         @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ?", tougetsu.prev_month, Date.today)
       end
     end
+  end
+  
+  def past
+    @user = current_user
   end
   
   def new
@@ -61,7 +65,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :rowrate, :highrate,
-                                   :expiredy, :password, :password_confirmation)
+                                   :expiredy, :password, :password_confirmationt)
     end
     
     # beforeフィルター
