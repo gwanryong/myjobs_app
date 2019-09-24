@@ -19,7 +19,17 @@
     <div class="col-md-6">
       <p>残業時間合計：<%= totalovertime + totalextratime %>h</p>
       <p>残業代合計：<%= (totalovertime*@user.rowrate) + (totalextratime*@user.highrate) %>円</p>
+      
     </div>
   </div>
-
+  
+  <% if false %>
+  <p>
+    <%= label_tag :taisy, '対象月:' %>
+    <%= date_field_tag  :born_on %>
+  </p>
+  <% end %>
+      
+  <%= link_to "過去データを参照", user_path(@user.id, :born_on => "2019/08"), user:@user, :method => :past %><br>
+  
 <% end %>

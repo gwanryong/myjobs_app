@@ -9,6 +9,5 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users
   resources :overtimeinfos,          only: [:create, :destroy]
-  
-  get 'pastdata'  => 'users#past'
+  post '/users/:id',  to: 'users#past'
 end

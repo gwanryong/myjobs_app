@@ -12,18 +12,27 @@ class UsersController < ApplicationController
     tougetsu = Date.parse(Date.today.year.to_s + "/" + Date.today.month.to_s + "/" + @user.expiredy)
     
     if @user.expiredy == "30"
-      @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ?", Date.today.beginning_of_month, Date.today)
+      @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ? and user_id = ?", Date.today.beginning_of_month, Date.today, @user.id)
     else
       if tougetsu < Date.today
-        @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ?", tougetsu, Date.today)
+        @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ? and user_id = ?", tougetsu, Date.today, @user.id)
       else
-        @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ?", tougetsu.prev_month, Date.today)
+        @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ? and user_id = ?", tougetsu.prev_month, Date.today, @user.id)
       end
     end
   end
   
   def past
-    @user = current_user
+    @user = User.find(params[:id])
+    taisyody = params[:born_on]
+    tougetsu = Date.parse(taisyody + "/" + @user.expiredy)
+    @taiday = params[:born_on]
+    
+    if @user.expiredy == "30"
+      @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ? and user_id = ?", tougetsu.beginning_of_month, tougetsu, @user.id)
+    else
+        @overtimeinfos = Overtimeinfo.where("created_at > ? and created_at <= ? and user_id = ?", tougetsu, tougetsu.next_month, @user.id)
+    end
   end
   
   def new
@@ -65,7 +74,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :rowrate, :highrate,
-                                   :expiredy, :password, :password_confirmationt)
+                                   :expiredy, :password, :password_confirmationt, :created_at)
     end
     
     # beforeフィルター
