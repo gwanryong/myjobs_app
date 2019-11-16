@@ -23,13 +23,17 @@
     </div>
   </div>
   
-  <% if false %>
   <p>
     <%= label_tag :taisy, '対象月:' %>
     <%= date_field_tag  :born %>
   </p>
-  <% end %>
-      
-  <%= link_to "過去データを参照", user_path(@user.id, :born_on => "2019/09"), user:@user, :method => :past %><br>
   
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("d").text("111");
+    });
+  </script>
+     
+  <%= link_to "過去データを参照", user_path(@user.id, :born_on => "2019/10"), user:@user, :method => :past %><br>
+
 <% end %>
